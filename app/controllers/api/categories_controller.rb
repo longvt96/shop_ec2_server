@@ -18,7 +18,7 @@ class Api::CategoriesController < Api::ApiController
              :json => { :status => true,
                         :message => "",
                         :data => {
-                          :category => @category,
+                          :category => CategoriesSerializer.new(@category).serializable_hash,
                           :products => list_products
                         } 
                       }

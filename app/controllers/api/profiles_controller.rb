@@ -51,6 +51,24 @@ class Api::ProfilesController < Api::ApiController
 
   end
 
+  def update
+    binding.pry
+    if @user_profile.update(user_profile_params)
+      render :status => 200,
+             :json => { :status => true,
+                        :message => "Profile updated",
+                        :data => {
+                            :profile => @user_profile
+                          } }
+    else
+      render :status => 200,
+             :json => { :status => false,
+                        :message => "Update profile error",
+                        :data => {:error_code => 117, :error_message =>"Phone number invalid" } }
+    end
+
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user_profile
@@ -59,6 +77,6 @@ class Api::ProfilesController < Api::ApiController
 
     # Never trust parameters from the scary internet, only allow the white list through.
   def user_profile_params
-    params.require(:user_profile).permit(:name, :gender, :date_of_birth, :address, :phone_number)
+    params.require(:user_profile).permit(:name, :gender, :date_of_birth, :address, :phone_number, :lat, :long)
   end
 end
