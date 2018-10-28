@@ -1,5 +1,6 @@
 class ProductSerializer < ActiveModel::Serializer
-  attributes :id, :title, :price, :description, :sale, :number_favorites, :product_iamges, :category_id, :shop_id, :shop_info, :number_product
+  attributes :id, :title, :price, :description, :sale, :number_favorites, :product_iamges, :category_id, :shop_id, :shop_info, :number_product,
+              :number_sell, :lat, :long
 
   has_many :product_iamges
 
@@ -16,5 +17,13 @@ class ProductSerializer < ActiveModel::Serializer
 
   def shop_info
     object.shop
+  end
+
+  def lat
+    object.user.profile.lat
+  end
+
+  def long
+    object.user.profile.long
   end
 end

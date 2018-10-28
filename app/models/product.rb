@@ -6,6 +6,9 @@ class Product < ActiveRecord::Base
 	has_many :comments
 	has_many :user_product_favorites
 	has_many :user_carts
+	belongs_to :user
 
 	accepts_nested_attributes_for :product_images
+
+	enum status: [:unactive, :active ]
 end

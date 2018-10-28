@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20181028043916) do
     t.integer  "number_product",   default: 0
     t.boolean  "status",           default: false
     t.integer  "user_id"
+    t.integer  "number_sell",      default: 0
   end
 
   create_table "profiles", force: :cascade do |t|

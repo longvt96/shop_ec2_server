@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :user_product_favorites
   has_many :user_carts
+  has_many :products
 
 
   def ensure_authentication_token
@@ -24,6 +25,13 @@ class User < ActiveRecord::Base
     loop do
       token = Devise.friendly_token
       break token unless User.where(authentication_token: token).first
+    end
+  end
+
+  def self.generate_remember_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(remember_token: token).first
     end
   end
 end

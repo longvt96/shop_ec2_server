@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users, path: "api/users", module: "api"
   namespace :api do
     root 'api#index'
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do 
+    	put :update, on: :collection
+    	post :forgot_password, on: :collection
+    end
     resource :profile
     resources :products do
 		collection do 

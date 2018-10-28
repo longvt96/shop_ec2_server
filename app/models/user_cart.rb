@@ -8,6 +8,8 @@ class UserCart < ActiveRecord::Base
 	private
 	def update_number_production
 		product = self.product
-		product.update_attribute(number_product: self.number_product - 1)
+		product.number_product -= 1
+		product.number_sell += 1
+		product.save
 	end
 end

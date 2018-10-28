@@ -4,13 +4,13 @@ class Api::ProductsController < Api::ApiController
   # before_action :set_product, only: [:show]
 
   def index
-    product_favorites = Product.order("number_favorites DESC").limit(10)
+    product_favorites = Product.active.order("number_favorites DESC").limit(10)
     favorites = []
     product_favorites.each do |v| 
       favorites << ProductSerializer.new(v).serializable_hash
     end
     sales = []
-    product_sales = Product.where('sale > ?', 0 ).order(:id).limit(10)
+    product_sales = Product.active.where('sale > ?', 0 ).order(:id).limit(10)
     product_sales.each do |v|
       sales << ProductSerializer.new(v).serializable_hash
     end

@@ -25,7 +25,7 @@ class Api::CategoriesController < Api::ApiController
     else
       render :status => :unprocessable_entity,
              :json => { :status => false,
-                        :message => "Cateogy not found" ,
+                        :message => "Category not found" ,
                         :data => {:error_code => 120, :error_message => "Cateogy not found"} }
     end
   end
